@@ -1,4 +1,4 @@
-import { GetStaticProps } from 'next'
+import { GetStaticPaths, GetStaticProps } from 'next'
 import { rmApi } from '~/core/http/api'
 import { Characters } from '~/interfaces/api/rickandmorty/character'
 import HomeScreen from '~/screens/home'
