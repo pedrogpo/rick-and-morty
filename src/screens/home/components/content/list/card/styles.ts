@@ -48,8 +48,6 @@ export const CharacterInfo = styled.div`
   background: rgba(0, 0, 0, 0.65);
   border-radius: 0px 0px 8px 8px;
 
-  backdrop-filter: blur(1px);
-
   z-index: 1;
 `
 
@@ -176,8 +174,6 @@ export const CharacterStatus = styled.div<ICharacterStatus>`
     background: rgba(20, 20, 20, 0.6);
   `}
 
-  backdrop-filter: blur(10px);
-
   height: 22px;
 
   border-radius: 5px;
@@ -192,7 +188,6 @@ export const CharacterGender = styled.div`
   padding: 6px;
 
   background: rgba(20, 21, 26, 0.54);
-  backdrop-filter: blur(5px);
 
   border-radius: 100px;
 `

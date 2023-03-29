@@ -51,7 +51,6 @@ const GlobalStyle = createGlobalStyle`
   // toast background
   .Toastify__toast-theme--dark{
     background-color: ${({ theme }) => theme.colors.background_700_08};
-    backdrop-filter: blur(12.5px);
     border-radius: 5px;
   }
 `
