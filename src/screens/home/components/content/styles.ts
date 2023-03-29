@@ -15,6 +15,8 @@ export const FilterContainer = styled.div`
     width: 33.33333333%;
     flex: 0 0 auto;
   }
+
+  padding-right: 0.75rem;
 `
 
 export const ListContainer = styled.div`
@@ -25,4 +27,6 @@ export const ListContainer = styled.div`
     width: 66.66666667%;
     flex: 0 0 auto;
   }
+
+  padding-left: 0.75rem;
 `

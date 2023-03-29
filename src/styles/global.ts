@@ -7,8 +7,6 @@ const GlobalStyle = createGlobalStyle`
       background-color: ${theme.colors.background_900};
     `}
 
-    font-family: 'Poppins', sans-serif;
-    
     color: white;
 
     scroll-behavior: smooth;
@@ -19,6 +17,8 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
+
+    font-family: 'Poppins', sans-serif;
   }
 
   a{ 
