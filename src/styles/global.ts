@@ -47,6 +47,13 @@ const GlobalStyle = createGlobalStyle`
   ::-webkit-scrollbar-track {
       background: rgba(0, 0, 0, 0.0);
   }
+
+  // toast background
+  .Toastify__toast-theme--dark{
+    background-color: ${({ theme }) => theme.colors.background_700_08};
+    backdrop-filter: blur(12.5px);
+    border-radius: 5px;
+  }
 `
 
 export default GlobalStyle

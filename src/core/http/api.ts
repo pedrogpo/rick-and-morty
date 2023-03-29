@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from 'axios'
 import { handleError } from './errors'
 
 export const rmApi = axios.create({
-  baseURL: process.env.BASE_URL,
+  baseURL: 'https://rickandmortyapi.com/api/',
 })
 
 rmApi.interceptors.response.use(

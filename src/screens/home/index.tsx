@@ -1,13 +1,14 @@
 import Container from '~/components/organisms/container'
 import Navbar from '~/components/organisms/navbar'
+import { Characters } from '~/interfaces/api/rickandmorty/character'
 import Content from './components/content'
 
-export default function HomeScreen({}: any) {
+export default function HomeScreen({ charactersData }: { charactersData: Characters }) {
   return (
     <main>
       <Navbar />
       <Container>
-        <Content />
+        <Content charactersData={charactersData} />
       </Container>
     </main>
   )

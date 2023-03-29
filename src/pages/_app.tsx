@@ -1,9 +1,12 @@
+import 'react-toastify/dist/ReactToastify.css'
+
 import type { AppProps } from 'next/app'
 import { ThemeProvider } from 'styled-components'
 import { defaultTheme } from '../core/constants/theme'
 
 import GlobalStyle from '~/styles/global'
 import { Poppins } from 'next/font/google'
+import { ToastContainer } from 'react-toastify'
 
 const poppins = Poppins({
   subsets: ['latin-ext'],
@@ -21,6 +24,7 @@ function RickAndMorty({ Component, pageProps }: AppProps) {
       `}</style>
       <GlobalStyle />
       <Component {...pageProps} />
+      <ToastContainer />
     </ThemeProvider>
   )
 }
