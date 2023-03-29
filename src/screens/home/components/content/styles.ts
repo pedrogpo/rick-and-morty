@@ -5,6 +5,10 @@ export const Content = styled.div`
   margin-top: 3.25rem;
   display: flex;
   flex-wrap: wrap;
+
+  @media screen and (max-width: 768px) {
+    gap: 2rem;
+  }
 `
 
 export const FilterContainer = styled.div`
@@ -14,9 +18,8 @@ export const FilterContainer = styled.div`
   @media (min-width: 768px) {
     width: 33.33333333%;
     flex: 0 0 auto;
+    padding-right: 0.75rem;
   }
-
-  padding-right: 0.75rem;
 `
 
 export const ListContainer = styled.div`
@@ -26,7 +29,6 @@ export const ListContainer = styled.div`
   @media (min-width: 768px) {
     width: 66.66666667%;
     flex: 0 0 auto;
+    padding-left: 0.75rem;
   }
-
-  padding-left: 0.75rem;
 `

@@ -18,6 +18,6 @@ export const Container = styled.div`
     max-width: 1140px;
   }
   @media (min-width: 1400px) {
-    max-width: 1320px;
+    max-width: 1440px;
   }
 `
