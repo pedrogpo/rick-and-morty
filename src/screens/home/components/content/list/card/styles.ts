@@ -28,8 +28,6 @@ export const CharacterCard = styled.div`
 
   &:hover {
     transform: scale(1.05);
-
-    filter: brightness(1.05);
   }
 `
 
