@@ -105,3 +105,96 @@ export const CardUnderlayImage = styled.div`
     border-radius: 8px;
   }
 `
+
+export const CardTopInfo = styled.div`
+  position: absolute;
+  top: 0.625rem;
+  left: 0;
+  width: 100%;
+  padding: 0 0.625rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 22px;
+
+  flex-wrap: wrap;
+
+  z-index: 2;
+
+  gap: 0.25rem;
+`
+
+interface IFavoriteButton {
+  isFavorite: boolean
+}
+
+export const FavoriteButton = styled.div<IFavoriteButton>`
+  display: flex;
+  padding: 6px;
+  background: rgba(0, 0, 0, 0.75);
+  border-radius: 100px;
+
+  cursor: pointer;
+
+  transition: 0.3s ease all;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.85);
+
+    svg {
+      fill: #fcc400;
+    }
+  }
+
+  svg {
+    fill: #fcc400;
+    fill: ${({ isFavorite, theme }) => !isFavorite && theme.colors.gray_100};
+  }
+`
+
+interface ICharacterStatus {
+  status: string
+}
+
+export const CharacterStatus = styled.div<ICharacterStatus>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 16px;
+
+  ${({ status }) =>
+    status === 'Alive' &&
+    `
+    background: rgba(29, 93, 48, 0.6);
+  `}
+  ${({ status }) =>
+    status === 'Dead' &&
+    `
+    background: rgba(93, 29, 29, 0.6);
+  `}
+  ${({ status }) =>
+    status === 'unknown' &&
+    `
+    background: rgba(20, 20, 20, 0.6);
+  `}
+
+  backdrop-filter: blur(10px);
+
+  height: 22px;
+
+  border-radius: 5px;
+
+  font-size: ${({ theme }) => theme.typography.text.xs};
+`
+
+export const CharacterGender = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 6px;
+
+  background: rgba(20, 21, 26, 0.54);
+  backdrop-filter: blur(5px);
+
+  border-radius: 100px;
+`
