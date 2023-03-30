@@ -77,7 +77,7 @@ function CharactersList({ startCharacters }: ICharactersList) {
             You can click on a card to see more info
           </Text>
         </S.CharactersListHead>
-        {charactersToShow.length > 0 ? (
+        {charactersToShow && charactersToShow.length > 0 ? (
           <CharactersListCards characters={charactersToShow} />
         ) : (
           <Heading size="sm" color="gray_500" weight="semibold">
