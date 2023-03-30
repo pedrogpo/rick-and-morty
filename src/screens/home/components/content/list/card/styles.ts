@@ -87,6 +87,8 @@ export const CharacterInfoButton = styled.button`
 `
 
 export const CardUnderlayImage = styled.div`
+  cursor: pointer;
+
   position: absolute;
   top: 0;
   left: 0;
@@ -144,6 +146,9 @@ export const FavoriteButton = styled.div<IFavoriteButton>`
     fill: #fcc400;
     fill: ${({ isFavorite, theme }) => !isFavorite && theme.colors.gray_100};
   }
+
+  position: relative;
+  z-index: 9;
 `
 
 export const CharacterGender = styled.div`
