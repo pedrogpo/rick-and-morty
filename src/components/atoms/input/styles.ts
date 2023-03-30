@@ -98,7 +98,7 @@ export const InputIcon = styled.span<InputIconProps>`
 
 export const InputError = styled.div`
   position: absolute;
-  margin-top: 0.5rem;
+  margin-top: 0.25rem;
 
   color: red;
   font-size: ${({ theme }) => theme.typography.text.xs};
