@@ -5,6 +5,7 @@ import { Heading, Text } from '~/components/atoms'
 import { Character } from '~/interfaces/api/rickandmorty/character'
 import { Location } from '~/interfaces/api/rickandmorty/location'
 import CharacterInfoContent from './character-info'
+import CharacterEpisodeContent from './episode-content'
 import * as S from './styles'
 
 export default function Content({
@@ -36,23 +37,7 @@ export default function Content({
               />
             </S.CharacterInfoCol>
             <S.CharacterEpisodesCountCol>
-              <S.CharacterEpisodeCount>
-                <Text size="xl" weight="semibold" color="gray_100">
-                  Episodes that
-                  <Text as="span" color="primary_500">
-                    {' '}
-                    {characterData.name}{' '}
-                  </Text>
-                  has been in:
-                </Text>
-                <S.CharacterEpisodeCards>
-                  {characterData.episode.map((episode) => (
-                    <S.CharacterEpisodeCard key={episode}>
-                      Ep. {episode.split('episode/')[1]}
-                    </S.CharacterEpisodeCard>
-                  ))}
-                </S.CharacterEpisodeCards>
-              </S.CharacterEpisodeCount>
+              <CharacterEpisodeContent characterData={characterData} />
             </S.CharacterEpisodesCountCol>
           </>
         ) : (
