@@ -26,9 +26,11 @@ export class CharactersStore {
     makeAutoObservable(this, {}, { autoBind: true })
   }
 
-  getQueryUrl() {
+  getQueryUrl(pageId?: number) {
     const { currentPage, options } = this
-    return `character?page=${currentPage}&name=${options.name}&status=${options.status}&species=${options.species}&gender=${options.gender}`
+    const pageNumber = pageId || currentPage
+
+    return `character?page=${pageNumber}&name=${options.name}&status=${options.status}&species=${options.species}&gender=${options.gender}`
   }
 
   async applyFilter(options: IFilterOptions) {
@@ -46,7 +48,13 @@ export class CharactersStore {
       this.setFilteredCharacters([])
     }
   }
+  async changePage(pageId: number): Promise<void> {
+    const { data: charactersData } = await rmApi.get<Characters>(this.getQueryUrl(pageId))
 
+    this.setCurrentPage(pageId)
+
+    this.updateCharacters(charactersData.results)
+  }
   removeFilter() {
     this.options = {
       name: '',

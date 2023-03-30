@@ -52,7 +52,11 @@ export const Pagination = ({
         const isLoading = loading === pageNumber
         const isActive = pageNumber === currentPage
 
-        return (
+        return isLoading ? (
+          <S.LoadingButton key={index}>
+            <BiLoaderAlt size={16} />
+          </S.LoadingButton>
+        ) : (
           <S.PaginationButton
             key={index}
             loading={!!loading}
@@ -60,7 +64,7 @@ export const Pagination = ({
             disabled={isLoading || isActive}
             onClick={() => onPageChange(pageNumber)}
           >
-            {isLoading ? <BiLoaderAlt size={16} /> : pageNumber}
+            {pageNumber}
           </S.PaginationButton>
         )
       })}

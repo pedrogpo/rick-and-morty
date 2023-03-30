@@ -40,13 +40,7 @@ function CharactersList({ startCharacters }: ICharactersList) {
     try {
       setPageLoading(pageId)
 
-      charactersStore.setCurrentPage(pageId)
-
-      const { data: charactersData } = await rmApi.get<Characters>(
-        charactersStore.getQueryUrl()
-      )
-
-      charactersStore.updateCharacters(charactersData.results)
+      await charactersStore.changePage(pageId)
     } catch (error) {
       // we can use the HttpError from ~/core/errors if we want to handle it
       Toast({
