@@ -1,11 +1,11 @@
 import Image from 'next/image'
+import React from 'react'
 import {
   BiChevronRight,
   BiFemaleSign,
   BiMale,
   BiMaleSign,
   BiQuestionMark,
-  BiRightArrowAlt,
   BiStar,
 } from 'react-icons/bi'
 import { Text } from '~/components/atoms'
@@ -14,9 +14,15 @@ import * as S from './styles'
 
 interface ICharacterCard {
   character: Character
+  onFavoriteClick?: (character: Character) => void
+  isFavorite: boolean
 }
 
-export default function CharacterCard({ character }: ICharacterCard) {
+function CharacterCard({ character, onFavoriteClick, isFavorite }: ICharacterCard) {
+  const handleFavoriteClick = () => {
+    onFavoriteClick?.(character)
+  }
+
   return (
     <S.CharacterCard>
       <S.CharacterInfo>
@@ -33,7 +39,7 @@ export default function CharacterCard({ character }: ICharacterCard) {
         </S.CharacterInfoButton>
       </S.CharacterInfo>
       <S.CardTopInfo>
-        <S.FavoriteButton isFavorite={false}>
+        <S.FavoriteButton onClick={handleFavoriteClick} isFavorite={isFavorite}>
           <BiStar size={14} />
         </S.FavoriteButton>
         <S.CharacterStatus status={character.status}>
@@ -74,3 +80,10 @@ export default function CharacterCard({ character }: ICharacterCard) {
     </S.CharacterCard>
   )
 }
+
+export default React.memo(CharacterCard, (prevProps, nextProps) => {
+  return (
+    prevProps.character.id === nextProps.character.id &&
+    prevProps.isFavorite === nextProps.isFavorite
+  )
+})

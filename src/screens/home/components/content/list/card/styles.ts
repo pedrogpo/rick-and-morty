@@ -137,9 +137,9 @@ export const FavoriteButton = styled.div<IFavoriteButton>`
   &:hover {
     background: rgba(0, 0, 0, 0.85);
 
-    svg {
+    /* svg {
       fill: #fcc400;
-    }
+    } */
   }
 
   svg {

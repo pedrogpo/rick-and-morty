@@ -12,7 +12,28 @@ interface ICharactersList {
   startCharacters: Character[]
 }
 
-export default function CharactersList({ startCharacters }: ICharactersList) {
+import { observer } from 'mobx-react'
+
+import { favoritesCharacters } from '~/store/favorites'
+
+const CharactersListCards = observer(({ characters }: { characters: Character[] }) => {
+  const renderCharacterCard = (character: Character) => (
+    <CharacterCard
+      character={character}
+      key={character.id}
+      isFavorite={favoritesCharacters.isFavorite(character)}
+      onFavoriteClick={() => favoritesCharacters.toggleFavorite(character)}
+    />
+  )
+
+  return (
+    <S.CharactersListCards>
+      {characters.map((character) => renderCharacterCard(character))}
+    </S.CharactersListCards>
+  )
+})
+
+function CharactersList({ startCharacters }: ICharactersList) {
   const [characters, setCharacters] = useState<Character[]>(startCharacters || [])
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [pageLoading, setPageLoading] = useState<number | null>(null)
@@ -50,11 +71,7 @@ export default function CharactersList({ startCharacters }: ICharactersList) {
         </S.CharactersListHead>
 
         {characters.length > 0 ? (
-          <S.CharactersListCards>
-            {characters.map((character) => (
-              <CharacterCard character={character} key={character.id} />
-            ))}
-          </S.CharactersListCards>
+          <CharactersListCards characters={characters} />
         ) : (
           <Heading size="sm" color="gray_500" weight="semibold">
             No characters found
@@ -72,3 +89,5 @@ export default function CharactersList({ startCharacters }: ICharactersList) {
     </S.Container>
   )
 }
+
+export default CharactersList
