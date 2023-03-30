@@ -4,7 +4,6 @@ import React from 'react'
 import {
   BiChevronRight,
   BiFemaleSign,
-  BiMale,
   BiMaleSign,
   BiQuestionMark,
   BiStar,
@@ -13,6 +12,8 @@ import { Text } from '~/components/atoms'
 import { CharacterStatus } from '~/components/atoms/character-status'
 import { Character } from '~/interfaces/api/rickandmorty/character'
 import * as S from './styles'
+
+import { useRouter } from 'next/router'
 
 interface ICharacterCard {
   character: Character
@@ -25,23 +26,14 @@ function CharacterCard({ character, onFavoriteClick, isFavorite }: ICharacterCar
     onFavoriteClick?.(character)
   }
 
+  const { push } = useRouter()
+
+  const handleCardClick = () => {
+    push(`/character/${character.id}`)
+  }
+
   return (
     <S.CharacterCard>
-      <Link href={`/character/${character.id}`}>
-        <S.CharacterInfo>
-          <S.CharacterInfoContent>
-            <Text as="h3" size="md" color="gray_100" weight="bold">
-              {character.name}
-            </Text>
-            <Text size="sm" color="gray_300">
-              {character.origin.name}
-            </Text>
-          </S.CharacterInfoContent>
-          <S.CharacterInfoButton>
-            <BiChevronRight size={22} color="white" />
-          </S.CharacterInfoButton>
-        </S.CharacterInfo>
-      </Link>
       <S.CardTopInfo>
         <S.FavoriteButton onClick={handleFavoriteClick} isFavorite={isFavorite}>
           <BiStar size={14} color="white" />
@@ -75,7 +67,20 @@ function CharacterCard({ character, onFavoriteClick, isFavorite }: ICharacterCar
           })()}
         </S.CharacterGender>
       </S.CardTopInfo>
-      <S.CardUnderlayImage>
+      <S.CardUnderlayImage onClick={handleCardClick}>
+        <S.CharacterInfo>
+          <S.CharacterInfoContent>
+            <Text as="h3" size="md" color="gray_100" weight="bold">
+              {character.name}
+            </Text>
+            <Text size="sm" color="gray_300">
+              {character.origin.name}
+            </Text>
+          </S.CharacterInfoContent>
+          <S.CharacterInfoButton>
+            <BiChevronRight size={22} color="white" />
+          </S.CharacterInfoButton>
+        </S.CharacterInfo>
         <Image
           src={character.image}
           alt="Rick and morty name"
