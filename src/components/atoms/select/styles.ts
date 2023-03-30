@@ -40,10 +40,17 @@ export const Select = styled.select<SelectProps>`
     });`}
 
   ${({ theme, background }) => css`
-    background: ${theme.colors[background]};
+    background: url('/icons/arrow-down.png') no-repeat right ${theme.colors[background]};
+    background-position-x: 95%;
     border: 1px solid transparent;
     color: ${({ theme }) => theme.colors.gray_500};
   `}
+
+  background-size: 8px;
+
+  height: 51px;
+
+  -webkit-appearance: none;
 
   &:disabled {
     cursor: text;
