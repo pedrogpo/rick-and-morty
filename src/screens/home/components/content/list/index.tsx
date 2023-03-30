@@ -15,12 +15,12 @@ interface ICharactersList {
 import { observer } from 'mobx-react'
 
 import { favoritesCharacters } from '~/store/favorites'
+import Link from 'next/link'
 
 const CharactersListCards = observer(({ characters }: { characters: Character[] }) => {
   const renderCharacterCard = (character: Character) => (
     <CharacterCard
       character={character}
-      key={character.id}
       isFavorite={favoritesCharacters.isFavorite(character)}
       onFavoriteClick={() => favoritesCharacters.toggleFavorite(character)}
     />

@@ -148,39 +148,6 @@ export const FavoriteButton = styled.div<IFavoriteButton>`
   }
 `
 
-interface ICharacterStatus {
-  status: string
-}
-
-export const CharacterStatus = styled.div<ICharacterStatus>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2px 16px;
-
-  ${({ status }) =>
-    status === 'Alive' &&
-    `
-    background: rgba(29, 93, 48, 0.6);
-  `}
-  ${({ status }) =>
-    status === 'Dead' &&
-    `
-    background: rgba(93, 29, 29, 0.6);
-  `}
-  ${({ status }) =>
-    status === 'unknown' &&
-    `
-    background: rgba(20, 20, 20, 0.6);
-  `}
-
-  height: 22px;
-
-  border-radius: 5px;
-
-  font-size: ${({ theme }) => theme.typography.text.xs};
-`
-
 export const CharacterGender = styled.div`
   display: flex;
   flex-direction: row;

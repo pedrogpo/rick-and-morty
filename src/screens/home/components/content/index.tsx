@@ -6,12 +6,12 @@ import * as S from './styles'
 export default function Content({ charactersData }: { charactersData: Characters }) {
   return (
     <S.Content>
-      <S.FilterContainer>
+      <S.FilterContainerCol>
         <FilterCharacters />
-      </S.FilterContainer>
-      <S.ListContainer>
+      </S.FilterContainerCol>
+      <S.ListContainerCol>
         <CharactersList startCharacters={charactersData?.results} />
-      </S.ListContainer>
+      </S.ListContainerCol>
     </S.Content>
   )
 }

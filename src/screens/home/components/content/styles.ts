@@ -11,7 +11,7 @@ export const Content = styled.div`
   }
 `
 
-export const FilterContainer = styled.div`
+export const FilterContainerCol = styled.div`
   max-width: 100%;
   width: 100%;
 
@@ -22,7 +22,7 @@ export const FilterContainer = styled.div`
   }
 `
 
-export const ListContainer = styled.div`
+export const ListContainerCol = styled.div`
   max-width: 100%;
   width: 100%;
 

@@ -25,9 +25,7 @@ export default class Website extends Document {
   render() {
     return (
       <Html>
-        <Head>
-          <link rel="shortcut icon" href="favicon.ico" />
-        </Head>
+        <Head></Head>
         <body>
           <Main />
           <NextScript />

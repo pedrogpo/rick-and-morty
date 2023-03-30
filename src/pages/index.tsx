@@ -3,7 +3,6 @@ import { rmApi } from '~/core/http/api'
 import { Characters } from '~/interfaces/api/rickandmorty/character'
 import HomeScreen from '~/screens/home'
 
-// getstaticprops
 export const getStaticProps: GetStaticProps = async (context) => {
   try {
     const { data: charactersData } = await rmApi.get<Characters>('character')
