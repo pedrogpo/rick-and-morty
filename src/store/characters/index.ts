@@ -48,13 +48,15 @@ export class CharactersStore {
       this.setFilteredCharacters([])
     }
   }
+
   async changePage(pageId: number): Promise<void> {
     const { data: charactersData } = await rmApi.get<Characters>(this.getQueryUrl(pageId))
 
     this.setCurrentPage(pageId)
-
+    this.setTotalPages(charactersData.info.pages)
     this.updateCharacters(charactersData.results)
   }
+
   removeFilter() {
     this.options = {
       name: '',
@@ -63,8 +65,7 @@ export class CharactersStore {
       gender: '',
     }
 
-    this.setTotalPages(42)
-    this.setCurrentPage(1)
+    this.changePage(1)
     this.setFilteredCharacters(null)
   }
 
