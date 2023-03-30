@@ -78,6 +78,8 @@ export const ButtonContainer = styled.button<ButtonProps>`
   justify-content: center;
   gap: 0.5rem;
 
+  cursor: pointer;
+
   ${({ disabled }) =>
     disabled &&
     css`
