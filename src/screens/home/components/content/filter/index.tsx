@@ -15,7 +15,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 
 import * as zod from 'zod'
 import Toast from '~/core/toast'
-import { filteredOptions } from '~/store/filter'
+import { charactersStore } from '~/store/characters'
 
 import { observer } from 'mobx-react'
 import { filterSchema } from '~/core/schemas/filter'
@@ -42,7 +42,7 @@ function FilterCharacters() {
       return
     }
 
-    await filteredOptions.applyFilter({
+    await charactersStore.applyFilter({
       name: data.name || '',
       status: data.status || '',
       gender: data.gender || '',
@@ -52,7 +52,7 @@ function FilterCharacters() {
 
   return (
     <>
-      {!filteredOptions.hasFilter() && (
+      {!charactersStore.hasFilter() && (
         <S.FilterCharacters onSubmit={handleSubmit(onApplyFilter)}>
           <Input
             sizeOf="m"
@@ -134,13 +134,14 @@ function FilterCharacters() {
         </S.FilterCharacters>
       )}
       {/* has filter */}
-      {filteredOptions.hasFilter() && (
+      {charactersStore.hasFilter() && (
         <Button
           disabled={formState.isSubmitting || !formState.isValid}
           color="primary_500"
           hug={true}
           onClick={() => {
-            filteredOptions.removeFilter()
+            reset()
+            charactersStore.removeFilter()
           }}
         >
           Remove filter

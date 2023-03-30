@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Heading, Text } from '~/components/atoms'
 import { rmApi } from '~/core/http/api'
 import Toast from '~/core/toast'
@@ -14,7 +14,7 @@ interface ICharactersList {
 import { observer } from 'mobx-react'
 
 import { favoritesCharacters } from '~/store/favorites'
-import { filteredOptions } from '~/store/filter'
+import { charactersStore } from '~/store/characters'
 
 const CharactersListCards = observer(({ characters }: { characters: Character[] }) => {
   const renderCharacterCard = (character: Character) => (
@@ -33,23 +33,19 @@ const CharactersListCards = observer(({ characters }: { characters: Character[] 
 })
 
 function CharactersList({ startCharacters }: ICharactersList) {
-  const [characters, setCharacters] = useState<Character[]>(startCharacters ?? [])
   const [pageLoading, setPageLoading] = useState<number | null>(null)
 
   const handlePageChange = async (pageId: number) => {
     try {
       setPageLoading(pageId)
-      filteredOptions.setCurrentPage(pageId)
+
+      charactersStore.setCurrentPage(pageId)
 
       const { data: charactersData } = await rmApi.get<Characters>(
-        filteredOptions.getQueryUrl()
+        charactersStore.getQueryUrl()
       )
 
-      if (filteredOptions.filteredCharacters) {
-        filteredOptions.setFilteredCharacters(charactersData.results)
-      } else {
-        setCharacters(charactersData.results)
-      }
+      charactersStore.updateCharacters(charactersData.results)
     } catch (error) {
       // we can use the HttpError from ~/core/errors if we want to handle it
       Toast({
@@ -61,10 +57,13 @@ function CharactersList({ startCharacters }: ICharactersList) {
     }
   }
 
-  const charactersToShow = filteredOptions.filteredCharacters || characters
+  const charactersToShow =
+    charactersStore.filteredCharacters ||
+    charactersStore.unfilteredCharacters ||
+    startCharacters
 
-  const currentPage = filteredOptions.currentPage
-  const totalPages = filteredOptions.totalPages
+  const currentPage = charactersStore.currentPage
+  const totalPages = charactersStore.totalPages
 
   return (
     <S.Container>

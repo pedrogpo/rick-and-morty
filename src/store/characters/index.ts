@@ -9,10 +9,11 @@ interface filterOptions {
   gender: string
 }
 
-export class FilteredOptions {
+export class CharactersStore {
   currentPage: number = 1
   totalPages: number = 42
   filteredCharacters: Character[] | null = null
+  unfilteredCharacters: Character[] | null = null
 
   options: filterOptions = {
     name: '',
@@ -27,10 +28,6 @@ export class FilteredOptions {
 
   getQueryUrl() {
     return `character?page=${this.currentPage}&name=${this.options.name}&status=${this.options.status}&species=${this.options.species}&gender=${this.options.gender}`
-  }
-
-  get characters() {
-    return this.filteredCharacters
   }
 
   async applyFilter(options: filterOptions) {
@@ -89,6 +86,22 @@ export class FilteredOptions {
       this.options.gender !== ''
     )
   }
+
+  setUnfilteredCharacters(characters: Character[]) {
+    this.unfilteredCharacters = characters
+  }
+
+  get getUnfilteredCharacters() {
+    return this.unfilteredCharacters
+  }
+
+  updateCharacters(character: Character[]) {
+    if (this.filteredCharacters) {
+      this.setFilteredCharacters(character)
+      return
+    }
+    this.setUnfilteredCharacters(character)
+  }
 }
 
-export const filteredOptions = new FilteredOptions()
+export const charactersStore = new CharactersStore()
