@@ -45,23 +45,22 @@ export const Pagination = ({
   return (
     <S.PaginationContainer>
       {pageNumbers.map((pageNumber, index) => {
-        return typeof pageNumber == 'string' ? (
-          <span>...</span>
-        ) : loading == pageNumber ? (
-          <S.LoadingButton>
-            <BiLoaderAlt size={16} />
-          </S.LoadingButton>
-        ) : (
+        if (typeof pageNumber === 'string') {
+          return <span key={index}>...</span>
+        }
+
+        const isLoading = loading === pageNumber
+        const isActive = pageNumber === currentPage
+
+        return (
           <S.PaginationButton
-            loading={loading !== null}
-            active={pageNumber === currentPage}
             key={index}
-            onClick={() =>
-              pageNumber !== currentPage &&
-              onPageChange(typeof pageNumber === 'string' ? currentPage : pageNumber)
-            }
+            loading={!!loading}
+            active={isActive}
+            disabled={isLoading || isActive}
+            onClick={() => onPageChange(pageNumber)}
           >
-            {pageNumber}
+            {isLoading ? <BiLoaderAlt size={16} /> : pageNumber}
           </S.PaginationButton>
         )
       })}

@@ -9,7 +9,7 @@ export const PaginationContainer = styled.div`
 
 interface IPaginationButton {
   active?: boolean
-  loading?: boolean
+  loading: boolean
 }
 
 export const PaginationButton = styled.button<IPaginationButton>`

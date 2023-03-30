@@ -19,6 +19,7 @@ import { charactersStore } from '~/store/characters'
 const CharactersListCards = observer(({ characters }: { characters: Character[] }) => {
   const renderCharacterCard = (character: Character) => (
     <CharacterCard
+      key={character.id}
       character={character}
       isFavorite={favoritesCharacters.isFavorite(character)}
       onFavoriteClick={() => favoritesCharacters.toggleFavorite(character)}

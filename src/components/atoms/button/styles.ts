@@ -81,9 +81,9 @@ export const ButtonContainer = styled.button<ButtonProps>`
   ${({ disabled }) =>
     disabled &&
     css`
-      opacity: 0.5;
+      opacity: 0.75;
       &:hover {
-        opacity: 0.5;
+        opacity: 0.75;
       }
       cursor: default;
     `}
