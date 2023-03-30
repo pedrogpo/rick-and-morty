@@ -37,7 +37,7 @@ export class CharactersStore {
     try {
       this.setOptions(options)
 
-      const { data } = await rmApi.get<Characters>(this.getQueryUrl())
+      const { data } = await rmApi.get<Characters>(this.getQueryUrl(1))
 
       this.setTotalPages(data.info.pages)
       this.setCurrentPage(1)
