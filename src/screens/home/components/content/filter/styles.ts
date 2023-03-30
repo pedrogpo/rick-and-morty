@@ -36,3 +36,13 @@ export const FilterCard = styled.div`
   font-size: ${({ theme }) => theme.typography.text.sm};
   font-weight: ${({ theme }) => theme.typography.weight.semibold};
 `
+
+export const DisabledArea = styled.div`
+  opacity: 0.35;
+  user-select: none;
+  pointer-events: none;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`

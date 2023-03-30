@@ -112,23 +112,24 @@ function FilterCharacters() {
         <option value="unknown">Unknown</option>
       </Select>
       <S.Divider />
-      <Text size="xl" color="gray_100" weight="medium">
-        Filter by episode:
-      </Text>
-      <Select
-        {...register('episode')}
-        placeholder="Episode"
-        sizeOf="m"
-        icon={<BiVideoRecording size={20} />}
-        error={errors.episode?.message}
-        defaultValue=""
-      >
-        <option value="" disabled>
-          Select an episode
-        </option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-      </Select>
+      <S.DisabledArea>
+        <Text size="xl" color="gray_100" weight="medium">
+          Filter by episode:
+        </Text>
+        <Select
+          placeholder="Episode"
+          sizeOf="m"
+          icon={<BiVideoRecording size={20} />}
+          defaultValue=""
+          disabled
+        >
+          <option value="" disabled>
+            Select an episode
+          </option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+        </Select>
+      </S.DisabledArea>
 
       <Button disabled={isSubmitting} color="primary_500" hug={true}>
         Apply filter
