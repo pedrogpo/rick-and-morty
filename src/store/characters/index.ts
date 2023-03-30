@@ -95,6 +95,10 @@ export class CharactersStore {
     return this.unfilteredCharacters
   }
 
+  get getOptions() {
+    return this.options
+  }
+
   updateCharacters(character: Character[]) {
     if (this.filteredCharacters) {
       this.setFilteredCharacters(character)

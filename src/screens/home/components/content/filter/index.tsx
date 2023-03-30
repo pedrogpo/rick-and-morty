@@ -143,16 +143,27 @@ function FilterCharacters() {
       {!charactersStore.hasFilter() ? (
         filterForm
       ) : (
-        <Button
-          color="primary_500"
-          hug={true}
-          onClick={() => {
-            reset()
-            charactersStore.removeFilter()
-          }}
-        >
-          Remove filter
-        </Button>
+        <>
+          <Button
+            color="primary_500"
+            hug={true}
+            onClick={() => {
+              reset()
+              charactersStore.removeFilter()
+            }}
+          >
+            Remove filter
+          </Button>
+          <S.FilterCards>
+            {Object.entries(charactersStore.getOptions)
+              .filter(([, value]) => value)
+              .map(([key, value]) => (
+                <S.FilterCard key={key}>
+                  {key.charAt(0).toUpperCase() + key.slice(1)}: {value}
+                </S.FilterCard>
+              ))}
+          </S.FilterCards>
+        </>
       )}
     </>
   )
