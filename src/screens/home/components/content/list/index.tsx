@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { useState } from 'react'
 import { Heading, Text } from '~/components/atoms'
 import { rmApi } from '~/core/http/api'
@@ -15,7 +14,7 @@ interface ICharactersList {
 import { observer } from 'mobx-react'
 
 import { favoritesCharacters } from '~/store/favorites'
-import Link from 'next/link'
+import { filteredOptions } from '~/store/filter'
 
 const CharactersListCards = observer(({ characters }: { characters: Character[] }) => {
   const renderCharacterCard = (character: Character) => (
@@ -34,21 +33,23 @@ const CharactersListCards = observer(({ characters }: { characters: Character[] 
 })
 
 function CharactersList({ startCharacters }: ICharactersList) {
-  const TOTAL_PAGES = 42 // this is static, but we can get it from api too :)
-
-  const [characters, setCharacters] = useState<Character[]>(startCharacters || [])
-  const [currentPage, setCurrentPage] = useState<number>(1)
+  const [characters, setCharacters] = useState<Character[]>(startCharacters ?? [])
   const [pageLoading, setPageLoading] = useState<number | null>(null)
 
   const handlePageChange = async (pageId: number) => {
     try {
       setPageLoading(pageId)
+      filteredOptions.setCurrentPage(pageId)
+
       const { data: charactersData } = await rmApi.get<Characters>(
-        `character?page=${pageId}`
+        filteredOptions.getQueryUrl()
       )
 
-      setCharacters(charactersData.results)
-      setCurrentPage(pageId)
+      if (filteredOptions.filteredCharacters) {
+        filteredOptions.setFilteredCharacters(charactersData.results)
+      } else {
+        setCharacters(charactersData.results)
+      }
     } catch (error) {
       // we can use the HttpError from ~/core/errors if we want to handle it
       Toast({
@@ -59,6 +60,11 @@ function CharactersList({ startCharacters }: ICharactersList) {
       setPageLoading(null)
     }
   }
+
+  const charactersToShow = filteredOptions.filteredCharacters || characters
+
+  const currentPage = filteredOptions.currentPage
+  const totalPages = filteredOptions.totalPages
 
   return (
     <S.Container>
@@ -71,8 +77,8 @@ function CharactersList({ startCharacters }: ICharactersList) {
             You can click on a card to see more info
           </Text>
         </S.CharactersListHead>
-        {characters.length > 0 ? (
-          <CharactersListCards characters={characters} />
+        {charactersToShow.length > 0 ? (
+          <CharactersListCards characters={charactersToShow} />
         ) : (
           <Heading size="sm" color="gray_500" weight="semibold">
             No characters found
@@ -82,7 +88,7 @@ function CharactersList({ startCharacters }: ICharactersList) {
       <Pagination
         loading={pageLoading}
         currentPage={currentPage}
-        totalPages={TOTAL_PAGES}
+        totalPages={totalPages}
         onPageChange={(pageId) => {
           handlePageChange(pageId)
         }}
@@ -91,4 +97,4 @@ function CharactersList({ startCharacters }: ICharactersList) {
   )
 }
 
-export default CharactersList
+export default observer(CharactersList)
