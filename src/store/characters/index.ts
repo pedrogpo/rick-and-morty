@@ -2,7 +2,7 @@ import { makeAutoObservable } from 'mobx'
 import { rmApi } from '~/core/http/api'
 import { Character, Characters } from '~/interfaces/api/rickandmorty/character'
 
-interface filterOptions {
+interface IFilterOptions {
   name: string
   status: string
   species: string
@@ -15,7 +15,7 @@ export class CharactersStore {
   filteredCharacters: Character[] | null = null
   unfilteredCharacters: Character[] | null = null
 
-  options: filterOptions = {
+  options: IFilterOptions = {
     name: '',
     status: '',
     species: '',
@@ -27,10 +27,11 @@ export class CharactersStore {
   }
 
   getQueryUrl() {
-    return `character?page=${this.currentPage}&name=${this.options.name}&status=${this.options.status}&species=${this.options.species}&gender=${this.options.gender}`
+    const { currentPage, options } = this
+    return `character?page=${currentPage}&name=${options.name}&status=${options.status}&species=${options.species}&gender=${options.gender}`
   }
 
-  async applyFilter(options: filterOptions) {
+  async applyFilter(options: IFilterOptions) {
     try {
       this.setOptions(options)
 
@@ -67,7 +68,7 @@ export class CharactersStore {
     this.totalPages = count
   }
 
-  setOptions(options: filterOptions) {
+  setOptions(options: IFilterOptions) {
     this.options.name = options.name
     this.options.status = options.status
     this.options.species = options.species
@@ -78,17 +79,18 @@ export class CharactersStore {
     this.filteredCharacters = character
   }
 
-  hasFilter() {
-    return (
-      this.options.name !== '' ||
-      this.options.status !== '' ||
-      this.options.species !== '' ||
-      this.options.gender !== ''
-    )
-  }
-
   setUnfilteredCharacters(characters: Character[]) {
     this.unfilteredCharacters = characters
+  }
+
+  hasFilter() {
+    const { options } = this
+    return (
+      options.name !== '' ||
+      options.status !== '' ||
+      options.species !== '' ||
+      options.gender !== ''
+    )
   }
 
   get getUnfilteredCharacters() {
