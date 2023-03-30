@@ -3,6 +3,26 @@ import Image from 'next/image'
 import { Heading, Text } from '~/components/atoms'
 import { Character } from '~/interfaces/api/rickandmorty/character'
 import { Location } from '~/interfaces/api/rickandmorty/location'
+import { BiStar } from 'react-icons/bi'
+
+import { observer } from 'mobx-react'
+import { favoritesCharacters } from '~/store/favorites'
+
+const FavoriteButton = observer(({ characterData }: { characterData: Character }) => {
+  return (
+    <S.CharacterFavoriteButton
+      onClick={() => {
+        favoritesCharacters.toggleFavorite(characterData)
+      }}
+      favorited={favoritesCharacters.isFavorite(characterData)}
+    >
+      <BiStar size={18} />
+      {favoritesCharacters.isFavorite(characterData)
+        ? 'Remove from favorites'
+        : 'Add to favorites'}
+    </S.CharacterFavoriteButton>
+  )
+})
 
 export default function CharacterInfoContent({
   characterData,
@@ -62,6 +82,18 @@ export default function CharacterInfoContent({
           Dimension: {originData?.dimension || 'unknown'}
         </Text>
       </S.CharacterOriginInfo>
+      <S.CharacterButtons>
+        <FavoriteButton characterData={characterData} />
+        <S.CharacterWikiButton
+          href={`https://rickandmorty.fandom.com/wiki/${characterData.name.replace(
+            ' ',
+            '_'
+          )}`}
+          target="_blank"
+        >
+          View this character in Rickipedia
+        </S.CharacterWikiButton>
+      </S.CharacterButtons>
     </>
   )
 }

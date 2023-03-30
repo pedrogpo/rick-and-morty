@@ -44,6 +44,9 @@ export const CharacterInfoCol = styled.div`
   max-width: 100%;
   width: 100%;
 
+  display: flex;
+  flex-direction: column;
+
   @media (min-width: 992px) {
     width: 65%;
     flex: 0 0 auto;

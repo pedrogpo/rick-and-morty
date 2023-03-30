@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const CharacterInfo = styled.div`
   display: flex;
@@ -64,10 +64,88 @@ export const CharacterOriginInfo = styled.div`
   align-items: flex-start;
   padding: 2rem;
 
+  flex: 1;
+
   gap: 10px;
 
   background-color: ${({ theme }) => theme.colors.background_800};
   border-radius: 8px;
 
   margin-top: 2rem;
+`
+
+export const CharacterButtons = styled.div`
+  margin-top: 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`
+
+interface CharacterFavorited {
+  favorited: boolean
+}
+
+// TODO: this should be a button in atoms
+
+export const CharacterFavoriteButton = styled.button<CharacterFavorited>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem 1.25rem;
+  gap: 10px;
+
+  background: ${({ theme }) => theme.colors.background_500};
+  color: ${({ theme }) => theme.colors.gray_400};
+  cursor: pointer;
+
+  ${({ favorited, theme }) =>
+    favorited &&
+    css`
+      &:hover {
+        filter: brightness(1.1);
+      }
+    `}
+
+  ${({ favorited }) =>
+    !favorited &&
+    css`
+      background: rgba(252, 196, 0, 0.05);
+      color: #fcc400;
+    `}
+
+  border-radius: 7px;
+
+  outline: none;
+  border: none;
+
+  font-size: ${({ theme }) => theme.typography.text.lg};
+  font-weight: ${({ theme }) => theme.typography.weight.medium};
+
+  transition: 0.3s ease all;
+`
+
+export const CharacterWikiButton = styled.a`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem 1.25rem;
+  gap: 10px;
+
+  background: ${({ theme }) => theme.colors.primary_500};
+  color: ${({ theme }) => theme.colors.gray_100};
+  cursor: pointer;
+
+  &:hover {
+    filter: brightness(1.1);
+  }
+
+  border-radius: 7px;
+
+  outline: none;
+  border: none;
+
+  font-size: ${({ theme }) => theme.typography.text.lg};
+  font-weight: ${({ theme }) => theme.typography.weight.medium};
+
+  transition: 0.3s ease all;
 `

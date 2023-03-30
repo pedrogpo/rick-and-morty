@@ -24,8 +24,6 @@ export const CharacterCard = styled.div`
 
   transition: 0.3s ease all;
 
-  cursor: pointer;
-
   &:hover {
     transform: scale(1.05);
   }
