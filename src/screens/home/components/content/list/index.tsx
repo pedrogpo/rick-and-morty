@@ -34,6 +34,8 @@ const CharactersListCards = observer(({ characters }: { characters: Character[] 
 })
 
 function CharactersList({ startCharacters }: ICharactersList) {
+  const TOTAL_PAGES = 42 // this is static, but we can get it from api too :)
+
   const [characters, setCharacters] = useState<Character[]>(startCharacters || [])
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [pageLoading, setPageLoading] = useState<number | null>(null)
@@ -69,7 +71,6 @@ function CharactersList({ startCharacters }: ICharactersList) {
             You can click on a card to see more info
           </Text>
         </S.CharactersListHead>
-
         {characters.length > 0 ? (
           <CharactersListCards characters={characters} />
         ) : (
@@ -81,7 +82,7 @@ function CharactersList({ startCharacters }: ICharactersList) {
       <Pagination
         loading={pageLoading}
         currentPage={currentPage}
-        totalPages={42}
+        totalPages={TOTAL_PAGES}
         onPageChange={(pageId) => {
           handlePageChange(pageId)
         }}

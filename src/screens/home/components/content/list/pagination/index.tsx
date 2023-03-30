@@ -1,4 +1,4 @@
-import { BiLoader, BiLoaderAlt, BiLoaderCircle } from 'react-icons/bi'
+import { BiLoaderAlt } from 'react-icons/bi'
 import * as S from './styles'
 
 interface PaginationProps {

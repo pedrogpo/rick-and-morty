@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import { BiChevronLeft } from 'react-icons/bi'
 import { Heading, Text } from '~/components/atoms'
