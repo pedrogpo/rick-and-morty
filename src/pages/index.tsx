@@ -9,7 +9,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
     return {
       props: {
-        charactersData: null,
+        charactersData,
       },
       revalidate: 120,
       // we know that this API returns a static response, so it doesn't need to be an ICR
