@@ -19,12 +19,10 @@ interface ICharactersList {
 const CharactersListCards = observer(({ characters }: { characters: Character[] }) => {
   const store = useClientSideStore(favoritesCharacters)
 
-  const renderCharacterCard = (
-    character: Character,
-    store: FavoritesCharacters | null
-  ) => {
+  const renderCharacterCard = (character: Character, index: number) => {
     return (
       <CharacterCard
+        index={index}
         key={character.id}
         character={character}
         isFavorite={store?.isFavorite(character) || false}
@@ -37,7 +35,7 @@ const CharactersListCards = observer(({ characters }: { characters: Character[] 
 
   return (
     <S.CharactersListCards>
-      {characters.map((character) => renderCharacterCard(character, store))}
+      {characters.map((character, index) => renderCharacterCard(character, index))}
     </S.CharactersListCards>
   )
 })

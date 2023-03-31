@@ -13,14 +13,21 @@ import { CharacterStatus } from '~/components/atoms/character-status'
 import { Character } from '~/interfaces/api/rickandmorty/character'
 
 import { useRouter } from 'next/router'
+import { motion } from 'framer-motion'
 
 interface ICharacterCard {
   character: Character
   onFavoriteClick?: (character: Character) => void
   isFavorite: boolean
+  index: number
 }
 
-function CharacterCard({ character, onFavoriteClick, isFavorite }: ICharacterCard) {
+function CharacterCard({
+  character,
+  onFavoriteClick,
+  isFavorite,
+  index,
+}: ICharacterCard) {
   const handleFavoriteClick = () => {
     onFavoriteClick?.(character)
   }
@@ -31,9 +38,25 @@ function CharacterCard({ character, onFavoriteClick, isFavorite }: ICharacterCar
     push(`/character/${character.id}`)
   }
 
+  const animationConfig = (delay: number) => {
+    return {
+      viewport: { once: true },
+      initial: { opacity: 0, y: -50 },
+      animate: {
+        opacity: 1,
+        y: 0,
+      },
+      transition: {
+        type: 'spring',
+        stiffness: 100,
+        delay,
+      },
+    }
+  }
+
   return (
     <S.CharacterCard>
-      <S.CardTopInfo>
+      <S.CardTopInfo as={motion.div} {...animationConfig(0.05 * index)}>
         <S.FavoriteButton onClick={handleFavoriteClick} isFavorite={isFavorite}>
           <BiStar size={14} color="white" />
         </S.FavoriteButton>
@@ -66,7 +89,11 @@ function CharacterCard({ character, onFavoriteClick, isFavorite }: ICharacterCar
           })()}
         </S.CharacterGender>
       </S.CardTopInfo>
-      <S.CardUnderlayImage onClick={handleCardClick}>
+      <S.CardUnderlayImage
+        as={motion.div}
+        {...animationConfig(0.02 * index)}
+        onClick={handleCardClick}
+      >
         <S.CharacterInfo>
           <S.CharacterInfoContent>
             <Text as="h3" size="md" color="gray_100" weight="bold">
