@@ -1,11 +1,15 @@
+import * as S from './styles'
 import Link from 'next/link'
 import { BiChevronLeft } from 'react-icons/bi'
 import { Heading, Text } from '~/components/atoms'
 import { CharacterCard } from '~/components/molecules'
 import { favoritesCharacters } from '~/store/favorites'
-import * as S from './styles'
+import useClientSideStore from '~/hooks/useClientSideStore'
+import { observer } from 'mobx-react'
 
-export default function Content() {
+function Content() {
+  const store = useClientSideStore(favoritesCharacters)
+
   return (
     <S.Content>
       <Link href="/">
@@ -23,13 +27,14 @@ export default function Content() {
           My Favorites
         </Heading>
         <S.CharacterCards>
-          {favoritesCharacters.favoritesList.length > 0 ? (
-            favoritesCharacters.favoritesList.map((character) => {
+          {store && store.favoritesList.length > 0 ? (
+            store.favoritesList.map((character, index) => {
               return (
                 <CharacterCard
+                  key={index}
                   character={character}
-                  isFavorite={true}
-                  onFavoriteClick={() => favoritesCharacters.toggleFavorite(character)}
+                  isFavorite={store.isFavorite(character)}
+                  onFavoriteClick={() => store.toggleFavorite(character)}
                 />
               )
             })
@@ -43,3 +48,5 @@ export default function Content() {
     </S.Content>
   )
 }
+
+export default observer(Content)

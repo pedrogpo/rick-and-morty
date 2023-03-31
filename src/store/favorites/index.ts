@@ -1,11 +1,30 @@
 import { makeAutoObservable } from 'mobx'
 import { Character } from '~/interfaces/api/rickandmorty/character'
+import { makePersistable, isHydrated, isPersisting } from 'mobx-persist-store'
+import localForage from 'localforage'
 
 export class FavoritesCharacters {
   favoritesList: Character[] = []
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true })
+
+    makePersistable(this, {
+      name: 'favoriteList',
+      properties: ['favoritesList'],
+      storage: localForage.createInstance({
+        name: 'favoriteList',
+        storeName: 'favoriteList',
+      }),
+    })
+  }
+
+  get isHydrated() {
+    return isHydrated(this)
+  }
+
+  get isPersisting() {
+    return isPersisting(this)
   }
 
   addFavorite(character: Character) {

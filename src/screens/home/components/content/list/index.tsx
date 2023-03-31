@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Heading, Text } from '~/components/atoms'
 import Toast from '~/core/toast'
 import { Character } from '~/interfaces/api/rickandmorty/character'
@@ -12,22 +12,32 @@ interface ICharactersList {
 
 import { observer } from 'mobx-react'
 
-import { favoritesCharacters } from '~/store/favorites'
+import { FavoritesCharacters, favoritesCharacters } from '~/store/favorites'
 import { charactersStore } from '~/store/characters'
+import useClientSideStore from '~/hooks/useClientSideStore'
 
 const CharactersListCards = observer(({ characters }: { characters: Character[] }) => {
-  const renderCharacterCard = (character: Character) => (
-    <CharacterCard
-      key={character.id}
-      character={character}
-      isFavorite={favoritesCharacters.isFavorite(character)}
-      onFavoriteClick={() => favoritesCharacters.toggleFavorite(character)}
-    />
-  )
+  const store = useClientSideStore(favoritesCharacters)
+
+  const renderCharacterCard = (
+    character: Character,
+    store: FavoritesCharacters | null
+  ) => {
+    return (
+      <CharacterCard
+        key={character.id}
+        character={character}
+        isFavorite={store?.isFavorite(character) || false}
+        onFavoriteClick={() => {
+          favoritesCharacters.toggleFavorite(character)
+        }}
+      />
+    )
+  }
 
   return (
     <S.CharactersListCards>
-      {characters.map((character) => renderCharacterCard(character))}
+      {characters.map((character) => renderCharacterCard(character, store))}
     </S.CharactersListCards>
   )
 })
@@ -79,7 +89,7 @@ function CharactersList({ startCharacters }: ICharactersList) {
         )}
       </S.CharactersList>
       <Pagination
-        loading={pageLoading}
+        pageLoading={pageLoading}
         currentPage={currentPage}
         totalPages={totalPages}
         onPageChange={(pageId) => {

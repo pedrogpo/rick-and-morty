@@ -9,7 +9,7 @@ export const PaginationContainer = styled.div`
 
 interface IPaginationButton {
   active?: boolean
-  loading: boolean
+  pageLoading?: boolean
 }
 
 export const PaginationButton = styled.button<IPaginationButton>`
@@ -31,9 +31,9 @@ export const PaginationButton = styled.button<IPaginationButton>`
   outline: none;
   border: none;
 
-  ${({ active, loading }) =>
+  ${({ active, pageLoading }) =>
     !active &&
-    !loading &&
+    !pageLoading &&
     css`
       cursor: pointer;
       &:hover {
@@ -43,8 +43,8 @@ export const PaginationButton = styled.button<IPaginationButton>`
 
   transition: 0.3s ease all;
 
-  ${({ loading }) =>
-    loading &&
+  ${({ pageLoading }) =>
+    pageLoading &&
     css`
       cursor: default;
     `}

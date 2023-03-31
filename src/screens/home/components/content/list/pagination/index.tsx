@@ -5,14 +5,14 @@ interface PaginationProps {
   currentPage: number
   totalPages: number
   onPageChange: (pageNumber: number) => void
-  loading: number | null
+  pageLoading?: number | null
 }
 
 export const Pagination = ({
   currentPage,
   totalPages,
   onPageChange,
-  loading,
+  pageLoading,
 }: PaginationProps) => {
   const getPageNumbers = () => {
     const pageNumbers = []
@@ -49,7 +49,7 @@ export const Pagination = ({
           return <span key={index}>...</span>
         }
 
-        const isLoading = loading === pageNumber
+        const isLoading = pageLoading === pageNumber
         const isActive = pageNumber === currentPage
 
         return isLoading ? (
@@ -59,7 +59,7 @@ export const Pagination = ({
         ) : (
           <S.PaginationButton
             key={index}
-            loading={!!loading}
+            pageLoading={pageLoading !== null}
             active={isActive}
             disabled={isLoading || isActive}
             onClick={() => onPageChange(pageNumber)}

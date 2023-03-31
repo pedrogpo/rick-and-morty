@@ -1,3 +1,4 @@
+import * as S from './styles'
 import Image from 'next/image'
 import React from 'react'
 import {
@@ -10,7 +11,6 @@ import {
 import { Text } from '~/components/atoms'
 import { CharacterStatus } from '~/components/atoms/character-status'
 import { Character } from '~/interfaces/api/rickandmorty/character'
-import * as S from './styles'
 
 import { useRouter } from 'next/router'
 
@@ -81,6 +81,7 @@ function CharacterCard({ character, onFavoriteClick, isFavorite }: ICharacterCar
           </S.CharacterInfoButton>
         </S.CharacterInfo>
         <Image
+          priority
           src={character.image}
           alt={character.name + ' - ' + character.status + ' - ' + character.species}
           quality={85}
