@@ -17,7 +17,7 @@ A catalog of characters from the Rick and Morty series. This project was created
 
 - Next.js
 - TypeScript
-- Styled Components
+- Styled Components (Atomic Design)
 - MobX
 - Axios
 - Zod
