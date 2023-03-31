@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Heading, Text } from '~/components/atoms'
-import { rmApi } from '~/core/http/api'
 import Toast from '~/core/toast'
-import { Character, Characters } from '~/interfaces/api/rickandmorty/character'
-import CharacterCard from './card'
+import { Character } from '~/interfaces/api/rickandmorty/character'
+import { CharacterCard } from '~/components/molecules'
 import { Pagination } from './pagination'
 import * as S from './styles'
 

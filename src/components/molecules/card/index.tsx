@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import Link from 'next/link'
 import React from 'react'
 import {
   BiChevronRight,
@@ -83,7 +82,7 @@ function CharacterCard({ character, onFavoriteClick, isFavorite }: ICharacterCar
         </S.CharacterInfo>
         <Image
           src={character.image}
-          alt="Rick and morty name"
+          alt={character.name + ' - ' + character.status + ' - ' + character.species}
           quality={85}
           width={200}
           height={200}
