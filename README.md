@@ -1,3 +1,5 @@
+![](./public/github_img.png)
+
 # Rick and Morty Catalog
 
 A catalog of characters from the Rick and Morty series. This project was created using Next.js and integrates with the [Rick and Morty API](https://rickandmortyapi.com/documentation/). It includes a list of characters with search and pagination features, and a detail page with the option to favorite a character.
