@@ -6,3 +6,11 @@ export const Navbar = styled.header`
 `
 
 export const NavbarText = styled.div``
+
+export const NavbarRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+`
