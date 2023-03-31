@@ -25,6 +25,10 @@ A catalog of characters from the Rick and Morty series. This project was created
 - Zod
 - React Hook Form
 
+## Persisting Store and Hydration
+
+To persist the store across sessions, the [mobx-persist-store](https://github.com/alvfork/mobx-persist-store) library was used in combination with [localForage](https://localforage.github.io/localForage/) to save data in the browser's IndexedDB storage. This enabled easy integration with MobX, allowing the store to be cached and retrieved even after the browser is closed. Additionally, a custom hook called `useClientSideStore` was created to solve hydration problems, ensuring that the store was properly initialized on the client-side and avoiding inconsistencies between server and client data.
+
 ## Deploy
 
 You can see this project in action, [click here](https://rick-and-morty-pedrogpo.vercel.app/)
