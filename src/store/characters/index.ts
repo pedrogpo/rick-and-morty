@@ -2,7 +2,7 @@ import { makeAutoObservable } from 'mobx'
 import { rmApi } from '~/core/http/api'
 import { Character, Characters } from '~/interfaces/api/rickandmorty/character'
 
-interface IFilterOptions {
+export interface IFilterOptions {
   name: string
   status: string
   species: string

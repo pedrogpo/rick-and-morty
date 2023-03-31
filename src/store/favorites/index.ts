@@ -1,6 +1,12 @@
 import { makeAutoObservable } from 'mobx'
 import { Character } from '~/interfaces/api/rickandmorty/character'
-import { makePersistable, isHydrated, isPersisting } from 'mobx-persist-store'
+import {
+  makePersistable,
+  isHydrated,
+  isPersisting,
+  stopPersisting,
+  clearPersistedStore,
+} from 'mobx-persist-store'
 import localForage from 'localforage'
 
 import { enableStaticRendering } from 'mobx-react'
@@ -20,6 +26,12 @@ export class FavoritesCharacters {
         properties: ['favoritesList'],
         storage: localForage,
       })
+  }
+
+  clearPersistedData() {
+    localForage.clear()
+    stopPersisting(this)
+    return clearPersistedStore(this)
   }
 
   get isHydrated() {
