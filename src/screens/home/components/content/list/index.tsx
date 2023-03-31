@@ -1,20 +1,20 @@
-import { useEffect, useState } from 'react'
+import * as S from './styles'
+import { useState } from 'react'
 import { Heading, Text } from '~/components/atoms'
-import Toast from '~/core/toast'
 import { Character } from '~/interfaces/api/rickandmorty/character'
 import { CharacterCard } from '~/components/molecules'
 import { Pagination } from './pagination'
-import * as S from './styles'
-
-interface ICharactersList {
-  startCharacters: Character[]
-}
-
-import { observer } from 'mobx-react'
 
 import { FavoritesCharacters, favoritesCharacters } from '~/store/favorites'
 import { charactersStore } from '~/store/characters'
 import useClientSideStore from '~/hooks/useClientSideStore'
+
+import { observer } from 'mobx-react'
+import Toast from '~/core/toast'
+
+interface ICharactersList {
+  startCharacters: Character[]
+}
 
 const CharactersListCards = observer(({ characters }: { characters: Character[] }) => {
   const store = useClientSideStore(favoritesCharacters)

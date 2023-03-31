@@ -3,20 +3,23 @@ import { Character } from '~/interfaces/api/rickandmorty/character'
 import { makePersistable, isHydrated, isPersisting } from 'mobx-persist-store'
 import localForage from 'localforage'
 
+import { enableStaticRendering } from 'mobx-react'
+
+const isServer = typeof window === 'undefined'
+enableStaticRendering(isServer)
+
 export class FavoritesCharacters {
   favoritesList: Character[] = []
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true })
 
-    makePersistable(this, {
-      name: 'favoriteList',
-      properties: ['favoritesList'],
-      storage: localForage.createInstance({
+    if (!isServer)
+      makePersistable(this, {
         name: 'favoriteList',
-        storeName: 'favoriteList',
-      }),
-    })
+        properties: ['favoritesList'],
+        storage: localForage,
+      })
   }
 
   get isHydrated() {
