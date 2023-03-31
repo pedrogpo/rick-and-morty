@@ -23,15 +23,21 @@ export default function Content() {
           My Favorites
         </Heading>
         <S.CharacterCards>
-          {favoritesCharacters.favoritesList.map((character) => {
-            return (
-              <CharacterCard
-                character={character}
-                isFavorite={true}
-                onFavoriteClick={() => favoritesCharacters.toggleFavorite(character)}
-              />
-            )
-          })}
+          {favoritesCharacters.favoritesList.length > 0 ? (
+            favoritesCharacters.favoritesList.map((character) => {
+              return (
+                <CharacterCard
+                  character={character}
+                  isFavorite={true}
+                  onFavoriteClick={() => favoritesCharacters.toggleFavorite(character)}
+                />
+              )
+            })
+          ) : (
+            <Text size="lg" weight="medium" color="gray_400">
+              You don't have any favorite character yet
+            </Text>
+          )}
         </S.CharacterCards>
       </S.CharacterList>
     </S.Content>
