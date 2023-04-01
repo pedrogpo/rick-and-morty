@@ -31,6 +31,7 @@ function Content() {
             store.favoritesList.map((character, index) => {
               return (
                 <CharacterCard
+                  index={index}
                   key={index}
                   character={character}
                   isFavorite={store.isFavorite(character)}
