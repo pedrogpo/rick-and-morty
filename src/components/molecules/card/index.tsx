@@ -103,7 +103,11 @@ function CharacterCard({
               {character.origin.name}
             </Text>
           </S.CharacterInfoContent>
-          <S.CharacterInfoButton>
+          <S.CharacterInfoButton
+            aria-label={
+              character.name + ' - ' + character.status + ' - ' + character.species
+            }
+          >
             <BiChevronRight size={22} color="white" />
           </S.CharacterInfoButton>
         </S.CharacterInfo>
