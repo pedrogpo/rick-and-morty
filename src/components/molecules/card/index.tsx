@@ -56,7 +56,7 @@ function CharacterCard({
 
   return (
     <S.CharacterCard>
-      <S.CardTopInfo as={motion.div} {...animationConfig(0.05 * index)}>
+      <S.CardTopInfo as={motion.div} {...animationConfig(0.02 * index)}>
         <S.FavoriteButton onClick={handleFavoriteClick} isFavorite={isFavorite}>
           <BiStar size={14} color="white" />
         </S.FavoriteButton>
