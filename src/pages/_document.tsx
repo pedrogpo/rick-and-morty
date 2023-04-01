@@ -25,7 +25,9 @@ export default class Website extends Document {
   render() {
     return (
       <Html>
-        <Head></Head>
+        <Head>
+          <title>Rick and Morty - pedrogpo</title>
+        </Head>
         <body>
           <Main />
           <NextScript />
