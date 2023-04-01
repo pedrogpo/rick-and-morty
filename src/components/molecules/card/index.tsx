@@ -56,7 +56,7 @@ function CharacterCard({
 
   return (
     <S.CharacterCard>
-      <S.CardTopInfo as={motion.div} {...animationConfig(0.02 * index)}>
+      <S.CardTopInfo as={motion.div}>
         <S.FavoriteButton onClick={handleFavoriteClick} isFavorite={isFavorite}>
           <BiStar size={14} color="white" />
         </S.FavoriteButton>
@@ -89,11 +89,7 @@ function CharacterCard({
           })()}
         </S.CharacterGender>
       </S.CardTopInfo>
-      <S.CardUnderlayImage
-        as={motion.div}
-        {...animationConfig(0.02 * index)}
-        onClick={handleCardClick}
-      >
+      <S.CardUnderlayImage as={motion.div} onClick={handleCardClick}>
         <S.CharacterInfo>
           <S.CharacterInfoContent>
             <Text as="h3" size="md" color="gray_100" weight="bold">
