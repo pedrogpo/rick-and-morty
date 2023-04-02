@@ -1,4 +1,4 @@
-import Container from '~/components/organisms/container'
+import { Container } from '~/components/organisms/'
 import { Character } from '~/interfaces/api/rickandmorty/character'
 import { Location } from '~/interfaces/api/rickandmorty/location'
 import Content from './components/content'

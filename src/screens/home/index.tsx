@@ -1,5 +1,4 @@
-import Container from '~/components/organisms/container'
-import Navbar from '~/components/organisms/navbar'
+import { Navbar, Container } from '~/components/organisms/'
 import { Characters } from '~/interfaces/api/rickandmorty/character'
 import Content from './components/content'
 

@@ -1,6 +1,6 @@
+import * as S from './styles'
 import { Text } from '~/components/atoms'
 import { Character } from '~/interfaces/api/rickandmorty/character'
-import * as S from './styles'
 
 export default function CharacterEpisodeContent({
   characterData,

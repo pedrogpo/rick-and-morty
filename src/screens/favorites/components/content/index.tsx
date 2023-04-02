@@ -1,11 +1,13 @@
 import * as S from './styles'
+
 import Link from 'next/link'
 import { BiChevronLeft } from 'react-icons/bi'
 import { Heading, Text } from '~/components/atoms'
 import { CharacterCard } from '~/components/molecules'
+
+import { observer } from 'mobx-react'
 import { favoritesCharacters } from '~/store/favorites'
 import useClientSideStore from '~/hooks/useClientSideStore'
-import { observer } from 'mobx-react'
 
 function Content() {
   const store = useClientSideStore(favoritesCharacters)

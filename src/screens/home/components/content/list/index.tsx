@@ -1,15 +1,17 @@
 import * as S from './styles'
+
 import { useState } from 'react'
+import { observer } from 'mobx-react'
+
 import { Heading, Text } from '~/components/atoms'
 import { Character } from '~/interfaces/api/rickandmorty/character'
 import { CharacterCard } from '~/components/molecules'
 import { Pagination } from './pagination'
 
-import { FavoritesCharacters, favoritesCharacters } from '~/store/favorites'
-import { charactersStore } from '~/store/characters'
 import useClientSideStore from '~/hooks/useClientSideStore'
+import { charactersStore } from '~/store/characters'
+import { favoritesCharacters } from '~/store/favorites'
 
-import { observer } from 'mobx-react'
 import Toast from '~/core/toast'
 
 interface ICharactersList {

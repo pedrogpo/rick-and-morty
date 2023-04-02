@@ -1,5 +1,4 @@
-import Container from '~/components/organisms/container'
-import Navbar from '~/components/organisms/navbar'
+import { Container } from '~/components/organisms/'
 import Content from './components/content'
 
 export default function FavoritesList() {

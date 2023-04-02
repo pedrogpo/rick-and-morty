@@ -1,11 +1,14 @@
+import * as S from './styles'
 import Link from 'next/link'
+
 import { BiChevronLeft } from 'react-icons/bi'
+
 import { Heading, Text } from '~/components/atoms'
 import { Character } from '~/interfaces/api/rickandmorty/character'
 import { Location } from '~/interfaces/api/rickandmorty/location'
+
 import CharacterInfoContent from './character-info'
 import CharacterEpisodeContent from './episode-content'
-import * as S from './styles'
 
 export default function Content({
   characterData,

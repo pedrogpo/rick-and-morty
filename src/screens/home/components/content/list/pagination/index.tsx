@@ -1,5 +1,5 @@
-import { BiLoaderAlt } from 'react-icons/bi'
 import * as S from './styles'
+import { BiLoaderAlt } from 'react-icons/bi'
 
 interface PaginationProps {
   currentPage: number

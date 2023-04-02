@@ -2,24 +2,25 @@ import * as S from './styles'
 
 import {
   BiFemaleSign,
-  BiMapPin,
   BiSearchAlt,
   BiStats,
   BiUniversalAccess,
   BiVideoRecording,
 } from 'react-icons/bi'
-import { Input, Select, Text } from '~/components/atoms'
-import Button from '~/components/atoms/button'
+
+import { useMemo } from 'react'
+import { observer } from 'mobx-react'
+
+import { Input, Select, Text, Button } from '~/components/atoms'
+
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import * as zod from 'zod'
-import Toast from '~/core/toast'
-import { charactersStore } from '~/store/characters'
 
-import { observer } from 'mobx-react'
 import { filterSchema } from '~/core/schemas/filter'
-import { useMemo } from 'react'
+import { charactersStore } from '~/store/characters'
+import Toast from '~/core/toast'
 
 type FilterData = zod.infer<typeof filterSchema>
 
